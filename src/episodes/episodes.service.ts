@@ -1,16 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
+import { ConfigService } from 'src/config/config.service';
 import { CreateEpisodeDto } from 'src/dto/create-episode.dto';
 import { Episode } from 'src/entities/episode.entity';
 
 @Injectable()
 export class EpisodesService {
+  constructor(private configService: ConfigService){}
   private episodes: Episode[] = [];
 
   async findAll(sort: 'asc' | 'desc' = 'asc') {
     const sortAsc = (a: Episode, b: Episode) => (a.name > b.name ? 1 : -1);
     const sortDesc = (a: Episode, b: Episode) => (a.name < b.name ? 1 : -1);
-
+    
     return sort === 'asc'
       ? this.episodes.sort(sortAsc)
       : this.episodes.sort(sortDesc);
