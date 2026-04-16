@@ -30,4 +30,18 @@ export class EpisodesService {
 
     return newEpisode;
   }
+
+   async updateOne(id: string, createEpisodeDto: CreateEpisodeDto) {
+    this.episodes.find((episode) => episode.id === id);
+    if(id){
+      this.episodes[id] = { ...createEpisodeDto, id};
+    }
+  }
+   
+  async deleteOne(id: string, createEpisodeDto: CreateEpisodeDto) {
+    const index = this.episodes.findIndex((episode) => episode.id === id);
+    if(index != -1){
+      this.episodes = this.episodes.slice(index, index + 1);
+    }
+  }
 }
