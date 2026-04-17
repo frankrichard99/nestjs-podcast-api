@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { ConfigService } from 'src/config/config.service';
-import { CreateEpisodeDto } from 'src/dto/create-episode.dto';
-import { Episode } from 'src/entities/episode.entity';
+import { CreateEpisodeDto } from 'src/episodes/dto/create-episode.dto';
+import { Episode } from 'src/episodes/entities/episode.entity';
 
 @Injectable()
 export class EpisodesService {
