@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Query, Body, Put, Delete, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Param, Post, Query, Body, Put, Delete, HttpException, HttpStatus, NotFoundException } from '@nestjs/common';
 import { EpisodesService } from './episodes.service';
 
 @Controller('episodes')
@@ -16,7 +16,8 @@ export class EpisodesController {
         console.log(id);
         const episode = await this.episodeService.findOne(id);
         if(!episode){
-            throw new HttpException("Episode not found", HttpStatus.NOT_FOUND);
+            //throw new HttpException("Episode not found", HttpStatus.NOT_FOUND);
+            throw new NotFoundException("Episode not found");
         }
     }
 
